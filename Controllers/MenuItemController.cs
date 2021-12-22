@@ -4,12 +4,13 @@ using RestaurantMenu.Data;
 using RestaurantMenu.Dtos;
 using RestaurantMenu.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace RestaurantMenu.Controllers
 {
-    [Route("api/menuitems")]
-    [ApiController]
-    public class MenuItemController : ControllerBase
+    [Produces(MediaTypeNames.Application.Json)]
+    [Route("api/menuItems")]
+    public class MenuItemController : MyControllerBase
     {
         private readonly IMenuItemRepo _repository;
         private readonly IMapper _mapper;
@@ -27,7 +28,7 @@ namespace RestaurantMenu.Controllers
         public ActionResult<IEnumerable<MenuItemReadDto>> GetAllMenuItems()
         {
             var MenuItems = _repository.GetAllMenuItems();
-            return Ok(_mapper.Map<IEnumerable<RestaurantReadDto>>(MenuItems));
+            return Ok(_mapper.Map<IEnumerable<MenuItemReadDto>>(MenuItems));
 
         }
         //GET api/Restaurants/{id}
@@ -38,7 +39,7 @@ namespace RestaurantMenu.Controllers
             var MenuItemItem = _repository.GetMenuItemById(id);
             if (MenuItemItem != null)
             {
-                return Ok(_mapper.Map<RestaurantReadDto>(MenuItemItem));
+                return Ok(_mapper.Map<MenuItemReadDto>(MenuItemItem));
             }
             return NotFound();
 

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RestaurantMenu.Data;
-
+[assembly: ApiController]
 namespace RestaurantMenu
 {
     public class Startup

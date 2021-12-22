@@ -44,6 +44,14 @@ namespace RestaurantMenu.Data
         public MenuItem GetMenuItemById(int id)
         {
             return _context.MenuItems.FirstOrDefault(p => p.Id == id);
+            // return new MenuItem
+            // {
+            //     Id = 0,
+            //     name = "reshmi paneer handi",
+            //     description = "chicken fillets with cheese",
+            //     price = 1220,
+            //     restaurantId = 1
+            // };
         }
 
         public bool SaveChanges()
@@ -56,10 +64,7 @@ namespace RestaurantMenu.Data
             //Nothing
         }
 
-        MenuItem IMenuItemRepo.GetMenuItemById(int id)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 
 }

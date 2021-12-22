@@ -4,12 +4,13 @@ using RestaurantMenu.Data;
 using RestaurantMenu.Dtos;
 using RestaurantMenu.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace RestaurantMenu.Controllers
 {
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("api/restaurants")]
-    [ApiController]
-    public class RestaurantController : ControllerBase
+    public class RestaurantController : MyControllerBase
     {
         private readonly IRestaurantRepo _repository;
         private readonly IMapper _mapper;
@@ -30,6 +31,7 @@ namespace RestaurantMenu.Controllers
             return Ok(_mapper.Map<IEnumerable<RestaurantReadDto>>(restaurantItems));
 
         }
+
         //GET api/Restaurants/{id}
         [HttpGet("{id}", Name = "GetRestaurantbyId")]
         public ActionResult<RestaurantReadDto> GetRestaurantById(int id)
